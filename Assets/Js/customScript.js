@@ -13,9 +13,13 @@ function init(){
 }
 
 function getSetupDetails(creds){
+    console.log(creds.clientId);
+    
     let clientId = atob(creds.clientId);
     let clientSecret = atob(creds.clientSecret);
     let refresh = atob(creds.refreshToken);
+    console.log('clientId', clientId);
+    
     var settings = {
         "url": "https://presko-dev-ed.develop.my.salesforce.com/services/oauth2/token?grant_type=refresh_token&client_id="+clientId+"&client_secret="+clientSecret+"&refresh_token="+refresh,
         "method": "POST",
@@ -141,8 +145,7 @@ $(document).ready(function(){
 
     var setupCreds = {};
     fetch('Assets/Notes/spec.json').then((response) => response.json()).then((json) => {
-        setupCreds = json;
+        getSetupDetails(json);
     });
-    getSetupDetails(setupCreds);
     init();
 })
