@@ -12,6 +12,23 @@ function init(){
     }
 }
 
+function getSetupDetails(creds){
+    let clientId = atob(creds.clientId);
+    let clientSecret = atob(creds.clientSecret);
+    let refresh = atob(creds.refreshToken);
+    var settings = {
+        "url": "https://presko-dev-ed.develop.my.salesforce.com/services/oauth2/token?grant_type=refresh_token&client_id="+clientId+"&client_secret="+clientSecret+"&refresh_token="+refresh,
+        "method": "POST",
+        "timeout": 0
+      };
+      
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+      });
+
+}
+
+
 function calculation(numberOfWindowTypeCalculated, numberOfSplitTypeCalculated){
 
     var subTotal = 0;
@@ -122,5 +139,10 @@ $(document).ready(function(){
         }
     });
 
+    var setupCreds = {};
+    fetch('Assets/Notes/spec.json').then((response) => response.json()).then((json) => {
+        setupCreds = json;
+    });
+    getSetupDetails(setupCreds);
     init();
 })
