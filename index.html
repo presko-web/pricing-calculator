@@ -19,145 +19,156 @@
         </nav>
         <div class="content-main">
             <div class="custom-width">
+                <form id="frm" method="POST">
+                    <div class="custom-card">
+                        <div class="card-header">
+                            
+                        </div>
+                        <div class="card-body">
+                            <div id="calculator">
+                                <h2 class="custom-label">Pricing Calculator</h2>
+                                <div class="custom-row">
+                                    <div class="col-1-of-2">
+                                        <div class="">
+                                            <label for="split-type" class="input-label">Number of Split type</label>
+                                            <select name="noOfSplitType" id="split-type" class="number-Of" disabled>
+                                                <option value="0">Choose one..</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-1-of-2">
+                                        <div class="">
+                                            <label for="window-type" class="input-label">Number of Window type</label>
+                                            <select name="noOfWindowType" id="window-type" class="number-Of" disabled>
+                                                <option value="0">Choose one..</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="custom-row">
 
-                <div class="custom-card">
-                    <div class="card-header">
-                        
+                                    <div class="col-1-of-2">
+                                        <div class="">
+                                            <label for="u-shaped-type" class="input-label">Number of U-Shaped type</label>
+                                            <select name="noOfUShapedType" id="u-shaped-type" class="number-Of" disabled>
+                                                <option value="0">Choose one..</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-1-of-2">
+                                        <div class="">
+                                            <label for="cleaning-date" class="input-label">Cleaning date</label>
+                                            <input type="date" name="cleaningDate" id="cleaning-date" required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="table-data" class="padding-top-mid">
+                                <h2 class="custom-label">Calculation Table</h2>
+                                <div class="custom-row">
+                                    <div class="col-1-of-1">
+                                        <table class="tbl">
+                                            <thead>
+                                                <th>Description</th>
+                                                <th>Qty</th>
+                                                <th>Unit Price</th>
+                                                <th>Line Total</th>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <div id="total-table"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="customer-data">
+
+                                <h2 class="custom-label">Customer Details</h2>
+                                <div class="custom-row">
+                                    <div class="col-1-of-2">
+                                        <div class="">
+                                            <label for="first-name" class="input-label">First name</label>
+                                            <input type="text" name="firstName" id="first-name" required="true">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-1-of-2">
+                                        <div class="">
+                                            <label for="last-name" class="input-label">Last name</label>
+                                            <input type="text" name="lastName" id="last-name" required="true">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="custom-row">
+                                    <div class="col-1-of-1">
+                                        <div class="">
+                                            <label for="mobile" class="input-label">Mobile number</label>
+                                            <input type="text" name="mobile" id="mobile" required="true">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="custom-row">
+                                    <div class="col-1-of-1">
+                                        <div class="">
+                                            <label for="street" class="input-label">Street</label>
+                                            <textarea name="street" id="street" required="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="custom-row">
+                                    <div class="col-1-of-2">
+                                        <div class="">
+                                            <label for="barangay" class="input-label">Barangay</label>
+                                            <input type="text" name="barangay" id="barangay" required="true">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-1-of-2">
+                                        <div class="">
+                                            <label for="city" class="input-label">City/Municipality</label>
+                                            <input type="text" name="city" id="city" value="Malolos" required="true">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="custom-row">
+                                    <div class="col-1-of-1">
+                                        <div class="">
+                                            <label for="landmark" class="input-label">Landmark</label>
+                                            <textarea name="landmark" id="landmark" required="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="custom-row">
+                                <div class="col-1-of-1">
+                                    <div class="buttons">
+                                        <button type="button" class="custom-neutral-btn" name="proceed" disabled>PROCEED TO BOOKING</button>
+                                        <button type="submit" class="custom-neutral-btn" name="book">BOOK</button>
+                                        <button type="button" class="custom-default-btn" name="clear">CLEAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div id="calculator">
-                            <h2 class="custom-label">Pricing Calculator</h2>
-                            <div class="custom-row">
-                                <div class="col-1-of-2">
-                                    <div class="">
-                                        <label for="split-type" class="input-label">Number of Split type</label>
-                                        <select name="split-type" id="split-type" class="number-Of">
-                                            <option value="0">Choose one..</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-1-of-2">
-                                    <div class="">
-                                        <label for="window-type" class="input-label">Number of Window type</label>
-                                        <select name="window-type" id="window-type" class="number-Of">
-                                            <option value="0">Choose one..</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <div class="custom-row">
-                                <div class="col-1-of-1">
-                                    <div class="">
-                                        <label for="cleaning-date" class="input-label">Cleaning date</label>
-                                        <input type="date" name="cleaning-date" id="cleaning-date">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="table-data" class="padding-top-mid">
-                            <h2 class="custom-label">Calculation Table</h2>
-                            <div class="custom-row">
-                                <div class="col-1-of-1">
-                                    <table class="tbl">
-                                        <thead>
-                                            <th>Description</th>
-                                            <th>Qty</th>
-                                            <th>Unit Price</th>
-                                            <th>Line Total</th>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                    <div id="total-table"></div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div id="customer-data">
-
-                            <h2 class="custom-label">Customer Details</h2>
-                            <div class="custom-row">
-                                <div class="col-1-of-2">
-                                    <div class="">
-                                        <label for="first-name" class="input-label">First name</label>
-                                        <input type="text" name="first-name" id="first-name">
-                                    </div>
-                                </div>
-
-                                <div class="col-1-of-2">
-                                    <div class="">
-                                        <label for="last-name" class="input-label">Last name</label>
-                                        <input type="text" name="last-name" id="last-name">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="custom-row">
-                                <div class="col-1-of-1">
-                                    <div class="">
-                                        <label for="mobile" class="input-label">Mobile number</label>
-                                        <input type="text" name="mobile" id="mobile">
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="custom-row">
-                                <div class="col-1-of-1">
-                                    <div class="">
-                                        <label for="street" class="input-label">Street</label>
-                                        <textarea name="street" id="street"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="custom-row">
-                                <div class="col-1-of-2">
-                                    <div class="">
-                                        <label for="barangay" class="input-label">Barangay</label>
-                                        <input type="text" name="barangay" id="barangay">
-                                    </div>
-                                </div>
-
-                                <div class="col-1-of-2">
-                                    <div class="">
-                                        <label for="city" class="input-label">City/Municipality</label>
-                                        <input type="text" name="city" id="city" value="Malolos">
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="custom-row">
-                                <div class="col-1-of-1">
-                                    <div class="">
-                                        <label for="landmark" class="input-label">Landmark</label>
-                                        <textarea name="landmark" id="landmark"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                    <div class="card-footer">
-                        <div class="custom-row">
-                            <div class="col-1-of-1">
-                                <div class="buttons">
-                                    <button type="button" class="custom-neutral-btn" name="proceed" disabled>PROCEED TO BOOKING</button>
-                                    <button type="submit" class="custom-neutral-btn" name="book">BOOK</button>
-                                    <button type="button" class="custom-default-btn" name="clear">CLEAR</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                 
+                </form>
             </div>
         </div>
     </div>
