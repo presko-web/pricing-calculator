@@ -7,6 +7,7 @@ var splitTypePrice = 0;
 var discount = 0;
 var errorCount = 0;
 var total = 0;
+var minDate = new Date().toISOString().substring(0,10);
 
 async function init(){
     
@@ -36,8 +37,7 @@ async function init(){
     })
 
     // assign minimum date
-    var isoDateToday = new Date().toISOString().substring(0,10);
-    $('#cleaning-date').attr('min', isoDateToday);
+    $('#cleaning-date').attr('min', minDate);
 
 }
 
@@ -143,7 +143,7 @@ function generateTotalTable(calc){
 
 async function createRecord(data){
 
-
+    $('.cover-loader').css({"display": "block"});
     var settings = {
         "url": "https://presko-dev-ed.develop.my.salesforce.com/services/apexrest/CreateAppointment",
         "method": "POST",
@@ -156,17 +156,49 @@ async function createRecord(data){
     };
     
     await $.ajax(settings).done(function (response) {
-        console.log(response);
+        if(!response.success){
+            $('.cover-loader').css({"display": "none"});
+            var errorMsg = 'Unexpected Error';
+            if (response.errorMessage.includes('DUPLICATES_DETECTED')) {
+                errorMsg = response.errorMessage.split('first error:')[1].split('DUPLICATES_DETECTED, Alert:')[1]
+            }
+            Toastify({
+                text: errorMsg,
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "center", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                  background: "linear-gradient(to right,rgb(176, 0, 0),rgb(201, 61, 61))",
+                }
+              }).showToast();
+        }else{
+            window.location.href = 'https://presko-dev-ed.develop.my.site.com/clientportal/s/?customerId=' + response.account_id;
+        }
     }).catch((err) => {
-        if(err.responseText.includes('Session expired or invalid')){
+        if(err.responseText.includes('Session expired or invalid') && errorCount <= 3){
             errorCount ++;
-            if(errorCount == 3) window.location.reload();
             getToken();
             setTimeout(() => {
                 createRecord(data);
             }, 2000);
-            
         }
+
+        if(errorCount >= 3) {
+            Toastify({
+                text: "unexpedted error, check the log or contact the Admin!",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "center", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                  background: "linear-gradient(to right,rgb(176, 0, 0),rgb(201, 61, 61))",
+                }
+              }).showToast();
+        };
+        console.log("error: ", err);
     });
 
 
@@ -275,8 +307,42 @@ $(function() {
             }
         });
         createRecord(jsonReq);
+    });
+
+    // Cutom Validity
+    $('input').on('change', function(){
+        $(this).get(0).setCustomValidity('');
+        $(this).get(0).style.borderColor = 'rgb(147, 147, 147)';
+    })
+    $('input').on('invalid', function(){
+
+        $(this).get(0).style.borderColor = 'red';
+        let validityMessage = 'Complete this field';
+        if($(this).get(0).name == 'cleaningDate'){
+            if ($(this).get(0).value != '') {
+                var date = new Date(minDate);
+                const options = { month: "long" };
+                validityMessage = 'The next available date is ' + new Intl.DateTimeFormat("en-US", options).format(date) + ' ' + date.getDate();
+            }
+        }
+
+        if($(this).get(0).name == 'mobile'){
+            if ($(this).get(0).value != '') {
+                validityMessage = "Phone number must start with '09' and contain exactly 11 digits.";
+            }
+        }
+
+        $(this).get(0).setCustomValidity(validityMessage);
     })
 
     // initialization
     init();
 })
+
+
+// TODO:: 
+// * Phone Number Validation - ok
+// * Error Messages
+//     - Validation error message - Ok
+//     - Creation record error
+//     - Date error message for Minimum Selection - Ok
