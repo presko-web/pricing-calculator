@@ -8,7 +8,12 @@
 <script src="Assets/Js/jquery.js"></script>
 <link rel="stylesheet" href="Assets/Css/style.css">
 <script src="Assets/Js/customScript.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <body class="">
+    <div class="cover-loader">
+        <div class="loader"></div>
+    </div>
     <div class="content">
         <nav class="content-header">
             <div class="header custom-width">
@@ -28,7 +33,7 @@
                             <div id="calculator">
                                 <h2 class="custom-label">Pricing Calculator</h2>
                                 <div class="custom-row">
-                                    <div class="col-1-of-2">
+                                    <div class="col-1-of-2 col-1-of-1-small">
                                         <div class="">
                                             <label for="split-type" class="input-label">Number of Split type</label>
                                             <select name="noOfSplitType" id="split-type" class="number-Of" disabled>
@@ -36,7 +41,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-1-of-2">
+                                    <div class="col-1-of-2 col-1-of-1-small">
                                         <div class="">
                                             <label for="window-type" class="input-label">Number of Window type</label>
                                             <select name="noOfWindowType" id="window-type" class="number-Of" disabled>
@@ -48,7 +53,7 @@
         
                                 <div class="custom-row">
 
-                                    <div class="col-1-of-2">
+                                    <div class="col-1-of-2 col-1-of-1-small">
                                         <div class="">
                                             <label for="u-shaped-type" class="input-label">Number of U-Shaped type</label>
                                             <select name="noOfUShapedType" id="u-shaped-type" class="number-Of" disabled>
@@ -58,7 +63,7 @@
                                     </div>
 
 
-                                    <div class="col-1-of-2">
+                                    <div class="col-1-of-2 col-1-of-1-small">
                                         <div class="">
                                             <label for="cleaning-date" class="input-label">Cleaning date</label>
                                             <input type="date" name="cleaningDate" id="cleaning-date" required="true">
@@ -90,14 +95,14 @@
 
                                 <h2 class="custom-label">Customer Details</h2>
                                 <div class="custom-row">
-                                    <div class="col-1-of-2">
+                                    <div class="col-1-of-2 col-1-of-1-small">
                                         <div class="">
                                             <label for="first-name" class="input-label">First name</label>
                                             <input type="text" name="firstName" id="first-name" required="true">
                                         </div>
                                     </div>
 
-                                    <div class="col-1-of-2">
+                                    <div class="col-1-of-2 col-1-of-1-small">
                                         <div class="">
                                             <label for="last-name" class="input-label">Last name</label>
                                             <input type="text" name="lastName" id="last-name" required="true">
@@ -108,8 +113,9 @@
                                 <div class="custom-row">
                                     <div class="col-1-of-1">
                                         <div class="">
-                                            <label for="mobile" class="input-label">Mobile number</label>
-                                            <input type="text" name="mobile" id="mobile" required="true">
+                                            <label for="mobile" class="input-label">Mobile number <small>(ex. 09097685432)</small>
+                                            </label>
+                                            <input type="tel" name="mobile" id="mobile" required="true" pattern="^09\d{9}$">
                                         </div>
                                     </div>
                                 </div>
@@ -126,14 +132,14 @@
 
 
                                 <div class="custom-row">
-                                    <div class="col-1-of-2">
+                                    <div class="col-1-of-2 col-1-of-1-small">
                                         <div class="">
                                             <label for="barangay" class="input-label">Barangay</label>
                                             <input type="text" name="barangay" id="barangay" required="true">
                                         </div>
                                     </div>
 
-                                    <div class="col-1-of-2">
+                                    <div class="col-1-of-2 col-1-of-1-small">
                                         <div class="">
                                             <label for="city" class="input-label">City/Municipality</label>
                                             <input type="text" name="city" id="city" value="Malolos" required="true">
