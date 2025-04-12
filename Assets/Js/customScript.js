@@ -8,6 +8,8 @@ var discount = 0;
 var errorCount = 0;
 var total = 0;
 var minDate = new Date().toISOString().substring(0,10);
+var unavailableDates = [];
+
 
 async function init(){
     
@@ -37,7 +39,7 @@ async function init(){
     })
 
     // assign minimum date
-    $('#cleaning-date').attr('min', minDate);
+    $('#datepicker').attr('min', minDate);
 
 }
 
@@ -74,7 +76,20 @@ async function getData(){
         windowTypePrice = resJsn.invoice.window_type;
         splitTypePrice = resJsn.invoice.split_type;
         discount = resJsn.invoice.discount;
+        minDate = resJsn.booking.availableFrom;
+        
         $('.number-Of').removeAttr('disabled');
+        // enable datepicker
+        $( "#datepicker" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            minDate: new Date(minDate),
+            beforeShowDay: (date) => {
+                var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+                return [ unavailableDates.indexOf(string) == -1 ]
+            }
+        });
+        $( "#datepicker" ).removeAttr('disabled');
+
     });
 
 }
@@ -204,8 +219,10 @@ async function createRecord(data){
 
 }
 
+
+
 $(function() {
-    
+
     $('.number-Of').on('change', function(){
         var arrTableData = [];
         if($(this).attr('name') == 'noOfSplitType'){
@@ -272,7 +289,6 @@ $(function() {
             $("#customer-data").css({"display": "block"});
             $(this).css({"display": "none"});
             $("button[name=book]").css({"display": "block"});
-            
         }
     });
 
@@ -306,14 +322,36 @@ $(function() {
                 jsonReq['appointment'][field.name] = field.value;
             }
         });
-        createRecord(jsonReq);
+
+        console.log(jsonReq);
+        
+        Swal.fire({
+            title: "",
+            showDenyButton: true,
+            confirmButtonText: "Save",
+            confirmButtonColor: '#557275',
+            icon: "question",
+            text: "Are you sure you want to proceed with this booking?",
+            denyButtonText: `Cancel`
+          }).then((result) => {
+            if (result.isConfirmed) {
+                createRecord(jsonReq);
+            }
+        });
+        
     });
 
     // Cutom Validity
     $('input').on('change', function(){
         $(this).get(0).setCustomValidity('');
         $(this).get(0).style.borderColor = 'rgb(147, 147, 147)';
-    })
+    });
+
+    $('textarea').on('change', function(){
+        $(this).get(0).setCustomValidity('');
+        $(this).get(0).style.borderColor = 'rgb(147, 147, 147)';
+    });
+
     $('input').on('invalid', function(){
 
         $(this).get(0).style.borderColor = 'red';
@@ -325,24 +363,22 @@ $(function() {
                 validityMessage = 'The next available date is ' + new Intl.DateTimeFormat("en-US", options).format(date) + ' ' + date.getDate();
             }
         }
-
         if($(this).get(0).name == 'mobile'){
             if ($(this).get(0).value != '') {
                 validityMessage = "Phone number must start with '09' and contain exactly 11 digits.";
             }
         }
-
         $(this).get(0).setCustomValidity(validityMessage);
     })
+
+
+    $('textarea').on('invalid', function(){
+
+        $(this).get(0).style.borderColor = 'red';
+        let validityMessage = 'Complete this field';
+        $(this).get(0).setCustomValidity(validityMessage);
+    });
 
     // initialization
     init();
 })
-
-
-// TODO:: 
-// * Phone Number Validation - ok
-// * Error Messages
-//     - Validation error message - Ok
-//     - Creation record error
-//     - Date error message for Minimum Selection - Ok

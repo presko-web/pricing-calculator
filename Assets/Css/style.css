@@ -47,17 +47,28 @@ body {
     box-shadow: 0px 1px 6px 0px rgb(237 232 237);
     border: 1px solid #e5e5e5;
 }
-.card-header h2{
+.custom-card-header h2{
     margin: 0;
 }
-.card-header{
+.custom-card-header{
     margin: 0 0 1em 0;
 }
 #frm{
     margin-bottom: 1em;
 }
-
-
+.datepicker{
+    position: relative;
+}
+.datepicker::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 32px;
+    background-color: transparent;
+    z-index: 100;
+}
 /** columns **/
 .custom-row{
     display: flex;
