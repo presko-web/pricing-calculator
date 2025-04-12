@@ -8,8 +8,7 @@ var discount = 0;
 var errorCount = 0;
 var total = 0;
 var minDate = new Date().toISOString().substring(0,10);
-var unavailableDates = [];
-
+var unavailableDates = ["2025-04-25", "2025-04-26", "2025-04-22", "2025-05-26"];
 
 async function init(){
     
@@ -323,6 +322,11 @@ $(function() {
             }
         });
 
+        // double checking for Cleaning date
+        if(unavailableDates.includes(jsonReq.appointment.cleaningDate)){
+            $('#datepicker').get(0).setCustomValidity("This date is not available");
+            return;
+        }
         console.log(jsonReq);
         
         Swal.fire({
