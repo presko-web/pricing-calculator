@@ -83,19 +83,6 @@ body {
 }
 
 
-@media only screen and (max-width: 500px) {
-    .custom-row{
-        flex-direction: column;
-    }
-    .col-1-of-2{
-        display: block;
-        width: 100% !important;
-    }
-    button[name="proceed"]{
-        margin-bottom: 10px !important;
-    }
-}
-
 /** forms **/
 select, input, textarea{
     width: 100%;
@@ -246,3 +233,63 @@ div.cover-loader{
       box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.2), 1.8em -1.8em 0 0em rgba(255,255,255, 0.2), 2.5em 0em 0 0em rgba(255,255,255, 0.2), 1.75em 1.75em 0 0em rgba(255,255,255, 0.2), 0em 2.5em 0 0em rgba(255,255,255, 0.2), -1.8em 1.8em 0 0em rgba(255,255,255, 0.5), -2.6em 0em 0 0em rgba(255,255,255, 0.7), -1.8em -1.8em 0 0em #ffffff;
     }
   }
+
+.mobile-calculation{
+    display: none;
+}
+.custom-accordion .custom-accordion-header p{
+    color: #557275;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+    padding: 10px;
+    border-bottom: 1px solid #e0ebeb;
+}
+.custom-accordion table{
+    width: 100%;
+    padding: 5px;
+    
+}
+.custom-accordion{
+    background-color: #f4f7f7;
+    border-radius: 5px;
+    border: 1px solid #e0ebeb;
+    margin-top: .5em;
+}
+.custom-accordion table tr td{
+    font-size: 12px;
+    width: 50px;
+    height: 25px;
+    padding: 0 10px;
+}
+#mobile-responsive-total{
+    margin-top: .5em;
+    
+}
+#mobile-responsive-total table{
+    width: 100%;
+    font-size: 13px;
+}
+#mobile-responsive-total table tr td{
+    text-align: right;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 500px) {
+    .custom-row{
+        flex-direction: column;
+    }
+    .col-1-of-2{
+        display: block;
+        width: 100% !important;
+    }
+    button[name="proceed"]{
+        margin-bottom: 10px !important;
+    }
+    .mobile-calculation{
+        display: block;
+    }
+    .default-calc-table{
+        display: none;
+    }
+}
