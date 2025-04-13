@@ -118,15 +118,41 @@ function removeTable(windowType, splitType, uShapedType) {
 }
 
 function generateBreakdownTable(arrTableData){
-
+    $('#inner-mobile-calc .custom-accordion').remove();
     for (let index = 0; index < arrTableData.length; index++) {
         const element = arrTableData[index];
+        
         $('#table-data table.tbl > tbody').append(
             $('<tr/>').append($('<td/>').text(element.description), 
                              $('<td/>').text(element.qty),
                              $('<td/>').text(new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(element.unitPrice)).css({"text-align":"right"}),
                              $('<td/>').text(new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(element.lineTotal)).css({"text-align":"right"}))
         )
+        
+        $('#inner-mobile-calc').append(`<div class="custom-accordion">
+                                            <div >
+                                                <div class="custom-accordion-header">
+                                                    <p>${element.description}</p>
+                                                </div>
+                                                <div class="">
+                                                    <table>
+                                                        <tr>
+                                                            <td>Qty</td>
+                                                            <td><b>${element.qty}</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Unit Price</td>
+                                                            <td><b>${new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(element.unitPrice)}</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Line Total</td>
+                                                            <td><b>${new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(element.lineTotal)}</b></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>`);
+
     }
 
 }
@@ -153,6 +179,25 @@ function generateTotalTable(calc){
                                 </tbody>
                             </table>
                         `);
+
+    $('#mobile-responsive-total').html(`
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>Sub total:</td>
+                                                <td>${new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(calc.subTotal)}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>${discountMessage}</td>
+                                                <td>${new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(totalDiscount)}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total:</td>
+                                                <td>${new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(calc.total)}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                `)
 }
 
 async function createRecord(data){
