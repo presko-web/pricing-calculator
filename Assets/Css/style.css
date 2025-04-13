@@ -269,6 +269,7 @@ div.cover-loader{
 #mobile-responsive-total table{
     width: 100%;
     font-size: 13px;
+    margin: 1em 0;
 }
 #mobile-responsive-total table tr td{
     text-align: right;
