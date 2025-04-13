@@ -323,12 +323,38 @@ $(function() {
         });
 
         // double checking for Cleaning date
+        let hasErrorDate = false;
+        let errMsg = "";
         if(unavailableDates.includes(jsonReq.appointment.cleaningDate)){
-            $('#datepicker').get(0).setCustomValidity("This date is not available");
-            return;
+            hasErrorDate = true;
+            errMsg = "The selected date is not available!";
         }
-        console.log(jsonReq);
         
+        let pattern = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+        let result = pattern.test(jsonReq.appointment.cleaningDate);
+
+        if(!result){
+            hasErrorDate = true;
+            errMsg = "Date format is Invalid";
+        }
+
+        if(hasErrorDate){
+
+            Toastify({
+                text: errMsg,
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "center", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                  background: "linear-gradient(to right,rgb(176, 0, 0),rgb(201, 61, 61))",
+                }
+              }).showToast();
+              $('#datepicker').focus();
+              return;
+        }
+
         Swal.fire({
             title: "",
             showDenyButton: true,
@@ -345,7 +371,7 @@ $(function() {
         
     });
 
-    // Cutom Validity
+    // Custom Validity
     $('input').on('change', function(){
         $(this).get(0).setCustomValidity('');
         $(this).get(0).style.borderColor = 'rgb(147, 147, 147)';
@@ -373,11 +399,11 @@ $(function() {
             }
         }
         $(this).get(0).setCustomValidity(validityMessage);
+
     })
 
 
     $('textarea').on('invalid', function(){
-
         $(this).get(0).style.borderColor = 'red';
         let validityMessage = 'Complete this field';
         $(this).get(0).setCustomValidity(validityMessage);
