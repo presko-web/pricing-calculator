@@ -8,7 +8,7 @@ var discount = 0;
 var errorCount = 0;
 var total = 0;
 var minDate = new Date().toISOString().substring(0,10);
-var unavailableDates = ["2025-04-25", "2025-04-26", "2025-04-22", "2025-05-26"];
+var unavailableDates = [];
 
 async function init(){
     
@@ -76,6 +76,8 @@ async function getData(){
         splitTypePrice = resJsn.invoice.split_type;
         discount = resJsn.invoice.discount;
         minDate = resJsn.booking.availableFrom;
+        unavailableDates = resJsn.blockedDates;
+        // console.log(resJsn);
         
         $('.number-Of').removeAttr('disabled');
         // enable datepicker
