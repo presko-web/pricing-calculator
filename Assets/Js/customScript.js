@@ -405,7 +405,7 @@ $(function() {
         Swal.fire({
             title: "",
             showDenyButton: true,
-            confirmButtonText: "Save",
+            confirmButtonText: "Yes",
             confirmButtonColor: '#557275',
             icon: "question",
             text: "Are you sure you want to proceed with this booking?",
