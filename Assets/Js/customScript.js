@@ -77,6 +77,13 @@ async function getData(){
         discount = resJsn.invoice.discount;
         minDate = resJsn.booking.availableFrom;
         unavailableDates = resJsn.blockedDates;
+        var dateTotday = new Date().toISOString().substring(0,10);
+        if(!unavailableDates.includes(dateTotday)){
+            unavailableDates.push(dateTotday);
+        }
+        console.log(unavailableDates);
+        
+        
         // console.log(resJsn);
         
         $('.number-Of').removeAttr('disabled');
@@ -331,7 +338,7 @@ $(function() {
     });
 
     $("button[name=proceed]").on("click", function(){
-        if(windowType > 0 || splitType > 0){
+        if(windowType > 0 || splitType > 0 || uShapedType > 0){
             $("#customer-data").css({"display": "block"});
             $(this).css({"display": "none"});
             $("button[name=book]").css({"display": "block"});
