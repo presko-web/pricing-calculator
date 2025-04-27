@@ -75,16 +75,12 @@ async function getData(){
         windowTypePrice = resJsn.invoice.window_type;
         splitTypePrice = resJsn.invoice.split_type;
         discount = resJsn.invoice.discount;
-        minDate = resJsn.booking.availableFrom;
+        
         unavailableDates = resJsn.blockedDates;
         var dateTotday = new Date().toISOString().substring(0,10);
         if(!unavailableDates.includes(dateTotday)){
             unavailableDates.push(dateTotday);
         }
-        console.log(unavailableDates);
-        
-        
-        // console.log(resJsn);
         
         $('.number-Of').removeAttr('disabled');
         // enable datepicker
