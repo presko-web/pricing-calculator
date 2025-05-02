@@ -15,9 +15,9 @@
   // Set the name in the thank you message
   document.addEventListener('DOMContentLoaded', () => {
     if (name) {
-      // document.querySelector('.name').textContent = name;
+      document.querySelector('.name').textContent = name;
     } else {
-      // document.querySelector('.name').textContent = 'Guest';
+      document.querySelector('.name').textContent = 'Guest';
     }
 
     // set the customerId in the link
@@ -25,7 +25,7 @@
     if (id) {
       homeBtn.href += id;
     } else {
-      homeBtn.href += '#'; // Fallback if customerId is not provided
+      window.location.href = 'index.html';
     }
 
   });
@@ -48,12 +48,13 @@
   src="https://www.facebook.com/tr?id=9606536616082279&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
-   
+
 <body>
   <div class="thank-you-container">
     <img src="Assets/Images/presko-logo-colored.png" alt="Logo" class="logo" style="width: 250px;" />
-    <h1>Thank You! <span class="name"></span></h1>
-    <p>Your response has been received. We appreciate you reaching out and will get back to you as soon as possible.</p>
+    <h1>You’re all set!</h1>
+    <p>Thanks for booking with us, <span class="name" style="text-transform: capitalize;"></span>. Your appointment has been confirmed.</p>
+    <p>See you soon!</p>
     <a href="https://presko-dev-ed.develop.my.site.com/clientportal/s/?customerId=" class="home-btn">Go to Dashboard</a>
   </div>
 </body>
