@@ -9,7 +9,7 @@ var errorCount = 0;
 var total = 0;
 var minDate = new Date().toISOString().substring(0,10);
 var unavailableDates = [];
-
+var customerName = '';
 async function init(){
     
     // initial Creds
@@ -240,7 +240,7 @@ async function createRecord(data){
                 }
               }).showToast();
         }else{
-            window.location.href = 'thank-you.html?customerId=' + response.account_id;
+            window.location.href = 'thank-you.html?customerId=' + response.account_id + '&name=' + customerName;
         }
     }).catch((err) => {
         if(err.responseText.includes('Session expired or invalid') && errorCount <= 3){
@@ -373,7 +373,7 @@ $(function() {
                 jsonReq['appointment'][field.name] = field.value;
             }
         });
-
+        customerName = jsonReq.customer.firstName + ' ' + jsonReq.customer.lastName;
         // double checking for Cleaning date
         let hasErrorDate = false;
         let errMsg = "";
