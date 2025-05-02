@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You</title>
+  <link rel="stylesheet" href="Assets/Css/thank-you.css" />
+</head>
+<script>
+  // Get the URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const name = urlParams.get('name');
+  const id = urlParams.get('customerId');
+
+  // Set the name in the thank you message
+  document.addEventListener('DOMContentLoaded', () => {
+    if (name) {
+      // document.querySelector('.name').textContent = name;
+    } else {
+      // document.querySelector('.name').textContent = 'Guest';
+    }
+
+    // set the customerId in the link
+    const homeBtn = document.querySelector('.home-btn');
+    if (id) {
+      homeBtn.href += id;
+    } else {
+      homeBtn.href += '#'; // Fallback if customerId is not provided
+    }
+
+  });
+</script>
+<body>
+  <div class="thank-you-container">
+    <img src="Assets/Images/presko-logo-colored.png" alt="Logo" class="logo" style="width: 250px;" />
+    <h1>Thank You! <span class="name"></span></h1>
+    <p>Your response has been received. We appreciate you reaching out and will get back to you as soon as possible.</p>
+    <a href="https://presko-dev-ed.develop.my.site.com/clientportal/s/?customerId=" class="home-btn">Go to Dashboard</a>
+  </div>
+</body>
+</html>

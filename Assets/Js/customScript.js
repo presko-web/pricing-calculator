@@ -72,6 +72,8 @@ async function getData(){
     }
     await $.ajax(reqJson).done(function (res) {
         var resJsn = JSON.parse(res);
+        console.log(resJsn);
+        
         windowTypePrice = resJsn.invoice.window_type;
         splitTypePrice = resJsn.invoice.split_type;
         discount = resJsn.invoice.discount;
@@ -238,7 +240,7 @@ async function createRecord(data){
                 }
               }).showToast();
         }else{
-            window.location.href = 'https://presko-dev-ed.develop.my.site.com/clientportal/s/?customerId=' + response.account_id;
+            window.location.href = 'thank-you.html?customerId=' + response.account_id;
         }
     }).catch((err) => {
         if(err.responseText.includes('Session expired or invalid') && errorCount <= 3){
