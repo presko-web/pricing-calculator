@@ -377,7 +377,9 @@ $(function() {
         // double checking for Cleaning date
         let hasErrorDate = false;
         let errMsg = "";
-        if(unavailableDates.includes(jsonReq.appointment.cleaningDate)){
+        let dateNow = new Date();
+        let dateSelected = new Date(jsonReq.appointment.cleaningDate);
+        if(unavailableDates.includes(jsonReq.appointment.cleaningDate) || dateSelected < dateNow){
             hasErrorDate = true;
             errMsg = "The selected date is not available!";
         }
