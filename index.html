@@ -5,6 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Presko</title>
 </head>
+
+<style>
+
+ 
+.card-cover { 
+  background: white;
+  text-align: center;
+  padding: 30px 20px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  width: 320px;
+  position: relative;
+  overflow: hidden;
+    margin: auto;
+    top: 10em;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 20px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.4em;
+  color: #333;
+}
+
+p {
+  margin: 10px 0 30px;
+  font-size: 0.95em; 
+  color: #555;
+}
+
+.bottom-bar {
+  height: 12px;
+  background: linear-gradient(to right, #99bcc0, #cef6fb);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+</style>
+    
 <script src="Assets/Js/jquery.js"></script>
 <link rel="stylesheet" href="Assets/Css/style.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -39,7 +84,19 @@
     <!-- End Meta Pixel Code -->
 <body class="">
     <div class="cover-loader">
-        <div class="loader"></div>
+        <div class="cover-card-div">
+          <div class="card-cover">
+            <div class="icon">
+              <!-- Simple arrow SVG -->
+              <svg viewBox="0 0 24 24" fill="#2196F3" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+              </svg>
+            </div>
+            <h2>We’ve moved!</h2>
+            <p>For a better and smoother experience, please visit our new sited: <a href="https://presko-ac.vercel.com/booking" style="">presko-ac.vercel.com/booking</a></p>
+            <div class="bottom-bar"></div>
+          </div>
+        </div>
     </div>
     <div class="content">
         <nav class="content-header">
